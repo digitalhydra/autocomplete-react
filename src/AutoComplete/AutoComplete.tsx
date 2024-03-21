@@ -57,6 +57,8 @@ export default function AutoComplete() {
     if (resultsCount < 1) {
       return;
     }
+    let resultElement = null;
+    let nextOption = 0;
     switch (key) {
       case "Escape":
         setResults(null);
@@ -64,21 +66,25 @@ export default function AutoComplete() {
       case "ArrowUp":
         if (!results) return;
         if (selectedOption <= 0) {
-          setSelectedOption(resultsCount - 1);
-          setSuggestion(getItemByIndex(resultsCount - 1).name);
+          nextOption = resultsCount - 1;
+          setSelectedOption(nextOption);
+          setSuggestion(getItemByIndex(nextOption).name);
         } else {
-          setSelectedOption(selectedOption - 1);
-          setSuggestion(getItemByIndex(selectedOption - 1).name);
+          nextOption = selectedOption - 1;
+          setSelectedOption(nextOption);
+          setSuggestion(getItemByIndex(nextOption).name);
         }
         break;
       case "ArrowDown":
         if (!results) return;
         if (selectedOption === -1 || selectedOption >= resultsCount - 1) {
+          nextOption = 0;
           setSelectedOption(0);
           setSuggestion(getItemByIndex(0).name);
         } else {
-          setSelectedOption(selectedOption + 1);
-          setSuggestion(getItemByIndex(selectedOption + 1).name);
+          nextOption = selectedOption + 1;
+          setSelectedOption(nextOption);
+          setSuggestion(getItemByIndex(nextOption).name);
         }
         break;
       case "Enter":
@@ -94,6 +100,13 @@ export default function AutoComplete() {
       default:
         return;
     }
+    // scroll the result item into view if user moves with arrows
+    resultElement = document.getElementById("autocomplete-result" + nextOption);
+    resultElement?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "nearest",
+    });
   };
 
   return (

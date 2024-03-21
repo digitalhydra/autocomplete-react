@@ -5,7 +5,7 @@ import AutoComplete from "./AutoComplete/AutoComplete";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App__container">
         <AutoComplete />
       </header>
     </div>

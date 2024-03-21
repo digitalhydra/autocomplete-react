@@ -14,7 +14,7 @@ function sortCountriesByName(results: Entry[], searchString: string): Entry[] {
   return results
     .sort((a, b) => a.name.localeCompare(b.name))
     .filter((entry) => entry.name.indexOf(searchString))
-    .slice(0, 15);
+    .slice(0, 25);
 }
 
 async function fetchApi(query: string): Promise<Entry[]> {
