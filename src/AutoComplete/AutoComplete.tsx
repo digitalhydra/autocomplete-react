@@ -21,7 +21,7 @@ export default function AutoComplete() {
       if (countriesResults.length) {
         setSelectedOption(0);
         setResults(countriesResults);
-        setSuggestion(countriesResults[selectedOption]?.title);
+        setSuggestion(countriesResults[selectedOption]?.name);
         setCurrentInput(input);
       } else {
         setResults(null);
@@ -40,7 +40,7 @@ export default function AutoComplete() {
 
   const handleOptionClick = (index: number): void => {
     if (!results) return;
-    setSuggestion(getItemByIndex(index).title);
+    setSuggestion(getItemByIndex(index).name);
     setResults(null);
   };
 
@@ -59,30 +59,30 @@ export default function AutoComplete() {
         if (!results) return;
         if (selectedOption <= 0) {
           setSelectedOption(resultsCount - 1);
-          setSuggestion(getItemByIndex(resultsCount - 1).title);
+          setSuggestion(getItemByIndex(resultsCount - 1).name);
         } else {
           setSelectedOption(selectedOption - 1);
-          setSuggestion(getItemByIndex(selectedOption - 1).title);
+          setSuggestion(getItemByIndex(selectedOption - 1).name);
         }
         break;
       case "ArrowDown":
         if (!results) return;
         if (selectedOption === -1 || selectedOption >= resultsCount - 1) {
           setSelectedOption(0);
-          setSuggestion(getItemByIndex(0).title);
+          setSuggestion(getItemByIndex(0).name);
         } else {
           setSelectedOption(selectedOption + 1);
-          setSuggestion(getItemByIndex(selectedOption + 1).title);
+          setSuggestion(getItemByIndex(selectedOption + 1).name);
         }
         break;
       case "Enter":
         if (!results) return;
-        setSuggestion(getItemByIndex(selectedOption).title);
+        setSuggestion(getItemByIndex(selectedOption).name);
         setResults(null);
         return;
       case "Tab":
         if (!results) return;
-        setSuggestion(getItemByIndex(selectedOption).title);
+        setSuggestion(getItemByIndex(selectedOption).name);
         setResults(null);
         return;
       default:

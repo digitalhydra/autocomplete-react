@@ -57,7 +57,7 @@ export default function Results({
               role="option"
               aria-selected={selectedValue === index}
             >
-              <Hightlighter text={entry.title} highlight={hightlight} />
+              <Hightlighter text={entry.name} highlight={hightlight} />
             </li>
           );
         })}
