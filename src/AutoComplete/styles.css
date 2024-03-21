@@ -1,0 +1,98 @@
+.autocomplete {
+  flexbox-sizing: border-box;
+  flex-wrap: wrap;
+  padding: 0;
+  position: relative;
+  transition: all 0.3s ease;
+  border: none;
+  display: flex;
+  width: 80%;
+}
+.autocomplete__button {
+  background: #1abc9c;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100px;
+  height: 100%;
+  transition: 0.3s;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 0 8px 8px 0;
+}
+.autocomplete__input {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  width: 100%;
+  transition: 0.3s;
+  padding: 12px 17% 12px 48px;
+  box-sizing: border-box;
+  position: relative;
+  font-size: 16px;
+  line-height: 1.5;
+  flex: 1;
+  background-color: #eee;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+);
+  background-repeat: no-repeat;
+  background-position: 12px;
+}
+.autocomplete__input:focus {
+  border-color: rgba(0, 0, 0, 0.12);
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.16);
+}
+.autocomplete__input[aria-expander="true"] {
+  border-bottom-color: transparent;
+  border-radius: 8px 8px 0 0;
+}
+
+.autocomplete__input:not(:placeholder-shown) + .autocomplete__button {
+  opacity: 1;
+}
+.autocomplete__input:placeholder-shown + .autocomplete__button {
+  opacity: 0;
+}
+.autocomplete__input[aria-expanded="true"] + .autocomplete__button {
+  border-bottom-right-radius: 0;
+}
+.autocomplete__input[aria-expanded="true"] {
+  border-bottom-color: transparent;
+  border-radius: 8px 8px 0 0;
+}
+.autocomplete__results {
+  top: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  margin-top: -1px;
+  width: 100%;
+  z-index: 1;
+  max-height: 300px;
+  background: #fff;
+  transition: none;
+  border-top-color: transparent;
+  border-radius: 0 0 8px 8px;
+  padding-bottom: 8px;
+  border: 0px solid rgba(0, 0, 0, 0.12);
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+.autocomplete__result {
+  cursor: pointer;
+  border-top: 1px solid #eee;
+  color: black;
+  text-align: left;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.autocomplete__result:hover,
+.autocomplete__result--active {
+  background: rgba(0, 0, 0, 0.12);
+}
