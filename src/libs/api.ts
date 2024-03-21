@@ -1,6 +1,5 @@
 const APIENDPOINT =
   "https://api.scryfall.com/cards/search?order=name&unique=cards&q=";
-//  "https://openlibrary.org/search.json?fields=title,key,language&limit=15&lang=eng&sort=title&language=eng&q=";
 export type Entry = {
   name: string;
   key: string;
@@ -14,7 +13,8 @@ function sortCountriesByName(results: Entry[], searchString: string): Entry[] {
   if (!results.length) return [];
   return results
     .sort((a, b) => a.name.localeCompare(b.name))
-    .filter((entry) => entry.name.indexOf(searchString));
+    .filter((entry) => entry.name.indexOf(searchString))
+    .slice(0, 15);
 }
 
 async function fetchApi(query: string): Promise<Entry[]> {

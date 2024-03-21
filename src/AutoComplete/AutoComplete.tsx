@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Entry, getBooksByTitle } from "../libs/api";
 import Results from "./Results";
 import SearchInput from "./SearchInput";
@@ -9,6 +9,7 @@ export default function AutoComplete() {
   const [results, setResults] = useState<Entry[] | null>(null);
   const [suggestion, setSuggestion] = useState<string>("");
   const [currentInput, setCurrentInput] = useState<string>("");
+  const [fetching, setFetching] = useState<boolean>(false);
   const resultsCount: number | null = (results as Entry[])?.length;
 
   const searchSuggestions = useCallback(async (input: string) => {
@@ -17,6 +18,7 @@ export default function AutoComplete() {
       return;
     }
     try {
+      setFetching(true);
       const countriesResults = await getBooksByTitle(input);
       if (countriesResults.length) {
         setSelectedOption(0);
@@ -31,6 +33,10 @@ export default function AutoComplete() {
       console.log(error);
     }
   }, []);
+
+  useEffect(() => {
+    setFetching(false);
+  }, [results]);
 
   const getItemByIndex = (index: number): Entry => {
     return results?.find(
@@ -92,6 +98,7 @@ export default function AutoComplete() {
 
   return (
     <fieldset className="autocomplete">
+      {fetching && <div className="autocomplete__loader" />}
       <SearchInput
         suggestion={suggestion}
         hasResults={resultsCount > 1}
