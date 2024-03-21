@@ -49,8 +49,8 @@ export default function SearchInput({
       onChange={(e) => handleUserInput(e.target.value)}
       onKeyDown={(e) => handleUserInteraction(e)}
       className="autocomplete__input"
-      placeholder="Search books by title"
-      aria-label="Search books by title"
+      placeholder="Search Magic The Gathering card"
+      aria-label="Search Magic The Gathering card"
       role="combobox"
       aria-haspopup="listbox"
       aria-owns="autocomplete-results"
